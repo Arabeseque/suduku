@@ -33,9 +33,8 @@ function initBoard(size: number) {
 }
 
 function handleInput(row: number, col: number) {
+  console.log('handleInput')
   answer[col * 9 + row] = Number(board[col][row].value)
-  // const { focused: inputFocus } = useFocus(board[col][row].value)
-  // inputFocus.value = false
 }
 
 function checkAnswer() {
@@ -68,12 +67,14 @@ onMounted(() => {
           hover:bg-gray-200 bg:op-70
         >
           <div v-if="grid.number">
-            <div :class="colorPlatte[grid.number]" font-bold w-7 h-7 bg-gray-100 op-70>
+            <div :class="colorPlatte[grid.number]" font-bold w-7 h-7 bg-gray-100 bg-op-70 flex items-center justify-center>
               {{ grid.number }}
             </div>
           </div>
           <input
-            v-else v-model="board[grid.col][grid.row].value" type="number"
+            v-else
+            v-model="board[grid.col][grid.row].value"
+            type="number"
             w-full h-full text-center border-gray-300
             :class="colorPlatte[board[grid.col][grid.row].value]"
             @keyup.enter="handleInput(grid.row, grid.col)"
