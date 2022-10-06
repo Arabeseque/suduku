@@ -38,7 +38,6 @@ function handleInput(row: number, col: number) {
   // inputFocus.value = false
 }
 
-const showResult = ref(false)
 function checkAnswer() {
   console.log(answer)
   console.log(rightAnswer)
@@ -69,13 +68,14 @@ onMounted(() => {
           hover:bg-gray-200 bg:op-70
         >
           <div v-if="grid.number">
-            <div :class="colorPlatte[grid.number]" font-bold>
+            <div :class="colorPlatte[grid.number]" font-bold w-7 h-7 bg-gray-100 op-70>
               {{ grid.number }}
             </div>
           </div>
           <input
             v-else v-model="board[grid.col][grid.row].value" type="number"
             w-full h-full text-center border-gray-300
+            :class="colorPlatte[board[grid.col][grid.row].value]"
             @keyup.enter="handleInput(grid.row, grid.col)"
           >
         </div>
